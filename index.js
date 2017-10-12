@@ -19,7 +19,8 @@ game.controller('gameController', function($scope, $mdDialog){
             leftArm: {},
             rightArm: {}
         },
-        inventory: {}
+        inventory: {},
+        position: null
     }
     var player = $scope.player;
 
