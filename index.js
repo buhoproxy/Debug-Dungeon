@@ -19,8 +19,9 @@ game.controller('gameController', function($scope, $mdDialog){
             leftArm: {},
             rightArm: {}
         },
-        inventory: {}
-    }
+        inventory: {},
+        position: null
+    };
     var player = $scope.player;
 
     $scope.randomName = function(){        
@@ -58,4 +59,11 @@ game.controller('gameController', function($scope, $mdDialog){
     if($scope.player.name == null){
         $scope.promptPlayer();
     }
+    var map = {
+        rooms: {},
+        difficulty: ""
+    }
+    var mapGenerator = function(){
+
+    };;
 });
