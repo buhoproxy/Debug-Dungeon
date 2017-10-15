@@ -17,26 +17,72 @@
     </head>
     <body ng-controller="gameController">  
                   
-        <div layout="row">            
-            <div layout="column" flex=30 layout-padding layout-fill>
-                <md-content flex=50 layout-fill>
-                    <h6>Nombre: {{player.name}}</h6>
-                    <md-button ng-click="">Inventario</md-button>
+        <div layout="row" layout-fill>   
+
+            <div layout="column" flex=30 layout-padding >
+                <md-content flex=71>
+
+                    <div>
+                        <h6>Nombre: {{player.name}}</h6>
+                        <h6>Vida: {{player.healthPoints}}</h6>
+                    </div>
+
+                    <div>
+                        <h6>Equipamiento:</h6>
+                        <h6>Casco:</h6>
+                        <h6>Armadura:</h6>
+                        <h6>Piernas:</h6>
+                        <h6>Mano Izquierda:</h6>
+                        <h6>Mano Derecha:</h6>
+                    </div>
+
+                    <md-button ng-click="inventoryManager.open()">Inventario</md-button>
+
                 </md-content>
     
                 <md-divider></md-divider>
     
-                <md-content flex=50 layout-fill>
+                <md-content flex=29 >
                     mapa
                 </md-content>
+
             </div>
 
             <md-divider></md-divider>  
 
-            <md-content flex=70 layout-padding>
-                Juego
-            </md-content>                    
-            <md-sidenav class="md-sidenav-left" md-component-id="left"></md-sidenav>
+            <md-content flex=70 layout-padding layout="column">
+                <div flex=90>Juego</div>
+
+                <md-divider></md-divider>
+
+                <div flex=10>
+                    <md-button>Adelante</md-button>  
+                    
+                    <md-button>Izquierda</md-button>  
+                    
+                    <md-button>Derecha</md-button>  
+                    
+                    <md-button>Atras</md-button> 
+                    
+                    <md-button>Buscar Objetos</md-button>
+                </div>
+
+            </md-content> 
+
+            <md-sidenav class="md-sidenav-left" md-component-id="inventory" layout-padding layout="column">
+
+                <div flex=90>Contenido Inventario</div>
+
+                <md-divider></md-divider>
+
+                <div flex=10>
+                    <md-button ng-click="inventoryManager.close()">Cerrar inventario</md-button>
+                </div>
+
+            </md-sidenav>
+
         </div>   
+
     </body>
+    
 </html>

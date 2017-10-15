@@ -6,7 +6,7 @@ game.config(function($mdThemingProvider){
         .dark();
 });
 
-game.controller('gameController', function($scope, $mdDialog){
+game.controller('gameController', function($scope, $mdDialog, $mdSidenav){
     $scope.player = {
         name: null,
         level: 1,
@@ -20,7 +20,7 @@ game.controller('gameController', function($scope, $mdDialog){
             rightArm: {}
         },
         inventory: {},
-        position: null
+        position: null,
     };
     var player = $scope.player;
 
@@ -45,13 +45,16 @@ game.controller('gameController', function($scope, $mdDialog){
         
         var chooseName = $mdDialog.prompt()
             .title('Elige tu nombre aventurero')
-            .textContent('Ingresa tu nombre para empezar la aventura')
+            .textContent('Ingresa tu nombre para empezar la aventura: (Si no eliges uno, se te asignara aleatoriamente)')
             .placeholder('Nombre del personaje')
-            .ok('Listo')
-            .cancel('Ponme un nombre aleatorio');
+            .ok('Listo');
 
             $mdDialog.show(chooseName).then(function(result){
-                $scope.player.name = result;
+                if(result != null || undefined){                    
+                    $scope.player.name = result;
+                }else{
+                    $scope.player.name = $scope.randomName();
+                }
             }, function(){
                 $scope.player.name = $scope.randomName();
             });
@@ -59,10 +62,22 @@ game.controller('gameController', function($scope, $mdDialog){
     if($scope.player.name == null){
         $scope.promptPlayer();
     }
+
+    $scope.inventoryManager = {
+        open: function(){
+            $mdSidenav("inventory").toggle();
+        },
+        close: function(){
+            $mdSidenav("inventory").close();
+        }
+    };
+
     var map = {
         rooms: {},
+        paths: {},
         difficulty: ""
     }
+    
     var mapGenerator = function(){
 
     };;
